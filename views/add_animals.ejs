@@ -1,0 +1,86 @@
+<%- include('layout/header') %>
+
+<div class="container">
+    <div class="row">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 mx-auto mt-4">
+                    <div class="card shadow">
+                        <div class="card-header bg-primary">
+                            <h5 class="text-light">Add New Animals</h5>
+                        </div>
+                        <div class="card-body p-4">
+                            <form action="/add" method="post" id="add-form" enctype="multipart/form-data">
+                                <div class="mb-3">
+                                    <label for="nomeComum">Nome Comum</label>
+                                    <input type="text" name="nomeComum" class="form-control form-control-lg" placeholder="Nome Comum do animal" required/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="nomeCientifico">Nome Cientifico</label>
+                                    <input type="text" name="nomeCientifico" class="form-control form-control-lg" placeholder="Nome Cientifico do animal" required/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="description">Descrição</label>
+                                    <input type="text" name="description" class="form-control form-control-lg" placeholder="Por favor, descreva a situação do animal!" required/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="habitat">Habitat</label>
+                                    <input type="text" name="habitat" class="form-control form-control-lg" placeholder="Habitat atual!" required/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="statusConservacao">Estado do Animal</label>
+                                    <select name="statusConservacao" class="form-control form-control-lg" required>
+                                        <option value="vivo">Vivo</option>
+                                        <option value="morto">Morto</option>
+                                        <option value="estado_grave">Estado Grave</option>
+                                        <option value="em_recuperacao">Em Recuperação</option>
+                                        <option value="em_extincao">Em Extinção</option>
+                                        <option value="desconhecido">Desconhecido</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="location">Localização do Animal</label>
+                                    <input type="text" id="location" name="localizacao" class="form-control form-control-lg" placeholder="Localização do Animal" readonly/>
+                                    <button type="button" class="btn btn-secondary mt-2" onclick="getLocation()">Obtenha a localização!</button>
+                                    <div id="mapLink" class="mt-2"></div>
+                                    <!-- Campos adicionais para Cidade, Estado e País -->
+                                    <input type="text" id="city" name="cidade" class="form-control form-control-lg mt-2" placeholder="Cidade" readonly/>
+                                    <input type="text" id="state" name="estado" class="form-control form-control-lg mt-2" placeholder="Estado" readonly/>
+                                    <input type="text" id="country" name="pais" class="form-control form-control-lg mt-2" placeholder="País" readonly/>
+                                </div>
+                                
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-lg-6 mx-auto mt-4">
+                                            <h3>Desenhe o Polígono e Baixe como KML</h3>
+                                            <div id="map" style="height: 500px; width: 100%;"></div>
+                                            <button onclick="downloadKML()">Baixar Polígono como KML</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCC8hQ8MfdIATQo8r4Q4BApeCz3xPzhInI&libraries=geometry,drawing&callback=initMap" async defer></script>
+                                <script src="/localization.js"></script> <!-- SCRIPT DE LOCALIZAÇÃO, NÃO MEXER -->
+                                <script src="/polygon.js"></script> <!-- SCRIPT DO POLIGONO, NÃO MEXER -->
+
+                                <div class="mb-3">
+                                    <label for="email">Email</label>
+                                    <input type="email" name="email" class="form-control form-control-lg" placeholder="Seu email correspondente!" required/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="image" class="form-label">Nos mostre uma foto do animal!</label>
+                                    <input type="file" name="image" class="form-control form-control-lg" required/>
+                                </div>
+                                <div class="mb-3">
+                                    <input type="submit" name="submit" value="Add Animal" class="btn btn-primary btn-lg" />
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>        
+    </div>
+</div>
+
+<%- include('layout/footer') %>

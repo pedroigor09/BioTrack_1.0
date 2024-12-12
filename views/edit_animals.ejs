@@ -1,0 +1,88 @@
+<%- include('layout/header') %>
+
+<div class="container">
+    <div class="row">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 mx-auto mt-4">
+                    <div class="card shadow">
+                        <div class="card-header bg-success">
+                            <h5 class="text-light">Edit Animal (<%= user.nomeComum%>)</h5>
+                        </div>
+                        <div class="card-body p-4">
+                            <form action="/update/<%= user._id %>" method="post" id="add-form" enctype="multipart/form-data">
+                                <div class="mb-3">
+                                    <label for="nomeComum">Nome Comum</label>
+                                    <input type="text" name="nomeComum"class="form-control form-control-lg" 
+                                    placeholder="Nome Comum do animal" value="<%= user.nomeComum %>" required/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="nomeCientifico">Nome Cientifico</label>
+                                    <input type="text" name="nomeCientifico" class="form-control form-control-lg" 
+                                    placeholder="Nome Cientifico do animal" value="<%= user.nomeCientifico %>" required/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="description">Descrição</label>
+                                    <input type="text" name="description" class="form-control form-control-lg" 
+                                    placeholder="Por favor, descreva a situação do animal!" value="<%= user.description %>" required/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="habitat">Habitat</label>
+                                    <input type="text" name="habitat" class="form-control form-control-lg" 
+                                    placeholder="Habitat atual!" value="<%= user.habitat %>" required/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="statusConservacao">Status de Conservação</label>
+                                    <select name="statusConservacao" class="form-control form-control-lg" value="<%= user.statusConservacao %>" required>
+                                        <option value="vivo">Vivo</option>
+                                        <option value="morto">Morto</option>
+                                        <option value="estado_grave">Estado Grave</option>
+                                        <option value="em_recuperacao">Em Recuperação</option>
+                                        <option value="em_extincao">Em Extinção</option>
+                                        <option value="desconhecido">Desconhecido</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="localizacao">Localização do Animal</label>
+                                    <select name="localizacao" class="form-control form-control-lg" value="<%= user.localizacao %>" required>
+                                        <option value="lauro_de_freitas">Lauro de Freitas</option>
+                                        <option value="sao_paulo">São Paulo</option>
+                                        <option value="rio_de_janeiro">Rio de Janeiro</option>
+                                        <option value="salvador">Salvador</option>
+                                        <option value="belo_horizonte">Belo Horizonte</option>
+                                        <option value="curitiba">Curitiba</option>
+                                        <option value="porto_alegre">Porto Alegre</option>
+                                        <option value="recife">Recife</option>
+                                        <option value="fortaleza">Fortaleza</option>
+                                        <option value="brasilia">Brasília</option>
+                                        <option value="manaus">Manaus</option>
+                                        <option value="belem">Belém</option>
+                                        <option value="goiania">Goiânia</option>
+                                        <option value="maceio">Maceió</option>
+                                    </select>
+                                </div>                                
+                                <div class="mb-3">
+                                    <label for="email">Email</label>
+                                    <input type="email" name="email" class="form-control form-control-lg" 
+                                    placeholder="Seu email correspondente!" value="<%= user.email %>" required/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="image" class="form-label">Nos mostre uma foto do animal!</label>
+                                    <input type="file" name="image" class="form-control form-control-lg"/>
+                                    <img src="/<%= user.image %>" width="100" class="img-thumbnail mt-1">
+                                </div>
+                                <input type="hidden" name="old_image" value="<%= user.image %>">
+                                <div class="mb-3 d-grid">
+                                    <input type="submit" name="submit" value="Update Animal" 
+                                    class="btn btn-success btn-lg" />
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>        
+    </div>
+</div>
+
+<%- include('layout/footer') %>

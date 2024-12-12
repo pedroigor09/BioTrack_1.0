@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - Projeto BioTrack 1.0 Inc.</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/css/bootstrap.min.css" integrity="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a href="/" class="navbar-brand">
+                <img src="/images/logoBioTrack.png" alt="Logo" style="height: 40px; margin-right: 10px;">
+                Projeto BioTrack 1.0 Inc.
+            </a>
+            <button class="navbar-toggler" data-bs-target="#my-nav"
+            data-bs-toggle="collapse" aria-controls="my-nav" aria-expanded="false"
+            aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div id="my-nav" class="collapse navbar-collapse">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/index"><i class="fas fa-home me-1"></i>Home</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#"><i class="fas fa-globe me-1"></i>Sobre BioTrack</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#"><i class="fas fa-envelope me-1"></i>Contate-nos!</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-lg-6 mx-auto">
+                <div class="card shadow">
+                    <div class="card-header bg-primary">
+                        <h5 class="text-light">Cadastro de Usuário</h5>
+                    </div>
+                    <div class="card-body p-4">
+                        <% if (message) { %>
+                            <div class="alert alert-<%= message.type %>">
+                                <%= message.message %>
+                            </div>
+                        <% } %>
+                        <form action="/register" method="post" id="register-form" enctype="multipart/form-data">
+                            <div class="mb-3">
+                                <label for="nome">Nome</label>
+                                <input type="text" name="nome" class="form-control form-control-lg" placeholder="Nome" required/>
+                            </div>
+                            <div class="mb-3">
+                                <label for="sobrenome">Sobrenome</label>
+                                <input type="text" name="sobrenome" class="form-control form-control-lg" placeholder="Sobrenome" required/>
+                            </div>
+                            <div class="mb-3">
+                                <label for="cpf">CPF</label>
+                                <input type="text" name="cpf" class="form-control form-control-lg" placeholder="CPF" required/>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email">E-mail</label>
+                                <input type="email" name="email" class="form-control form-control-lg" placeholder="E-mail" required/>
+                            </div>
+                            <div class="mb-3">
+                                <label for="certificado">Certificado de Biólogo</label>
+                                <input type="file" name="certificado" class="form-control form-control-lg" required/>
+                            </div>
+                            <div class="mb-3">
+                                <label for="senha">Senha</label>
+                                <input type="password" name="senha" class="form-control form-control-lg" placeholder="Senha" required/>
+                            </div>
+                            <div class="mb-3">
+                                <label for="confirmarSenha">Repetir Senha</label>
+                                <input type="password" name="confirmarSenha" class="form-control form-control-lg" placeholder="Repetir Senha" required/>
+                            </div>
+                            <div class="mb-3">
+                                <input type="submit" name="submit" value="Cadastrar" class="btn btn-primary btn-lg" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('register-form').addEventListener('submit', function(event) {
+            const senha = document.querySelector('input[name="senha"]').value;
+            const confirmarSenha = document.querySelector('input[name="confirmarSenha"]').value;
+            if (senha !== confirmarSenha) {
+                event.preventDefault();
+                alert('As senhas não conferem. Por favor, verifique e tente novamente.');
+            }
+        });
+    </script>
+</body>
+</html>
